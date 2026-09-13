@@ -62,15 +62,15 @@ export function SearchFilter({
       {filters.map((filter) => (
         <Select
           key={filter.key}
-          value={filter.value}
-          onValueChange={filter.onChange}
+          value={filter.value || 'all'}
+          onValueChange={(val) => filter.onChange(val === 'all' ? '' : val)}
         >
           <SelectTrigger className="w-full sm:w-40 h-10 rounded-xl border-border/50 bg-background/50 text-sm">
             <Filter className="h-4 w-4 mr-2 text-muted-foreground" />
             <SelectValue placeholder={filter.label} />
           </SelectTrigger>
           <SelectContent className="rounded-xl">
-            <SelectItem value="" className="rounded-lg">All {filter.label}</SelectItem>
+            <SelectItem value="all" className="rounded-lg">All {filter.label}</SelectItem>
             {filter.options.map((option) => (
               <SelectItem
                 key={option.value}

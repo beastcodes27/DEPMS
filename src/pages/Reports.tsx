@@ -231,17 +231,17 @@ export function Reports() {
           <div className="space-y-2">
             <Label htmlFor="schoolFilter">School Filter</Label>
             <Select
-              value={formData.filters?.schoolId || ''}
+              value={formData.filters?.schoolId || 'all'}
               onValueChange={(value) => setFormData({
                 ...formData,
-                filters: { ...formData.filters, schoolId: value }
+                filters: { ...formData.filters, schoolId: value === 'all' ? '' : value }
               })}
             >
               <SelectTrigger className="rounded-xl">
                 <SelectValue placeholder="All Schools" />
               </SelectTrigger>
               <SelectContent className="rounded-xl">
-                <SelectItem value="" className="rounded-lg">All Schools</SelectItem>
+                <SelectItem value="all" className="rounded-lg">All Schools</SelectItem>
                 {schools.map((school) => (
                   <SelectItem key={school.id} value={school.id} className="rounded-lg">
                     {school.name}

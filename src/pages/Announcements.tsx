@@ -321,15 +321,15 @@ export function Announcements() {
           <div className="space-y-2">
             <Label htmlFor="schoolId">School (Optional)</Label>
             <Select
-              value={formData.schoolId || ''}
-              onValueChange={(value) => setFormData({ ...formData, schoolId: value || undefined })}
+              value={formData.schoolId || 'all'}
+              onValueChange={(value) => setFormData({ ...formData, schoolId: value === 'all' ? undefined : value })}
               disabled={modalMode === 'view'}
             >
               <SelectTrigger className="rounded-xl">
                 <SelectValue placeholder="All Schools" />
               </SelectTrigger>
               <SelectContent className="rounded-xl">
-                <SelectItem value="" className="rounded-lg">All Schools</SelectItem>
+                <SelectItem value="all" className="rounded-lg">All Schools</SelectItem>
                 {schools.map((school) => (
                   <SelectItem key={school.id} value={school.id} className="rounded-lg">
                     {school.name}
